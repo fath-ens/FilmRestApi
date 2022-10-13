@@ -7,19 +7,20 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class YorumDto implements Serializable {
-
-    private int fid;
+public class YorumDtoGet implements Serializable {
     private String user;
     private String icerig;
 
-    public int getFid() {
-        return fid;
+    public YorumDtoGet(String user, String icerig) {
+        this.user = user;
+        this.icerig = icerig;
+    }
+
+    public YorumDtoGet() {
     }
 
     public String getUser() {
@@ -29,18 +30,4 @@ public class YorumDto implements Serializable {
     public String getIcerig() {
         return icerig;
     }
-
-    public YorumDto(int fid, String user, String icerig) {
-        this.fid = fid;
-        this.user = user;
-        this.icerig = icerig;
-    }
-
-    public YorumDto() {
-    }
 }
-
-
-
-
-
