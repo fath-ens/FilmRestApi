@@ -3,10 +3,11 @@ package com.filmrestapi.filmapi.controller;
 import com.filmrestapi.filmapi.Service.MovieService;
 import com.filmrestapi.filmapi.dto.MovieDto;
 import com.filmrestapi.filmapi.entity.Movie;
-import com.filmrestapi.filmapi.mapped.MapStructMapper;
+import com.filmrestapi.filmapi.MapStructMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,11 @@ public class MovieController {
     @GetMapping("/AllMovie")
     public List<MovieDto> getAllMovie(){
         List<Movie> movies = movieService.getAll();
-        return mapStructMapper.movieToMovieDtoList(movies);
+        List<MovieDto> movieDtos = new ArrayList<MovieDto>(movies.size());
+        for (Movie movie:movies){
+            movieDtos.add(mapStructMapper.movieToMovieDto(movie));
+        }
+        return movieDtos;
     }
 
     @GetMapping("/Movie/{FilmID}")
