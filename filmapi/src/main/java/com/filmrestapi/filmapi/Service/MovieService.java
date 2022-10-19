@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+
 @RequiredArgsConstructor
+@RestController
 public class MovieService {
     private final MovieRepository movieRepository;
     public List<Movie>getAll () {

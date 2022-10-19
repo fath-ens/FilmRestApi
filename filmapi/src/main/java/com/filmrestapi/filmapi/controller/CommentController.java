@@ -2,14 +2,16 @@ package com.filmrestapi.filmapi.controller;
 
 import com.filmrestapi.filmapi.Service.CommentService;
 import com.filmrestapi.filmapi.dto.CommentDto;
+import com.filmrestapi.filmapi.dto.MovieDto;
 import com.filmrestapi.filmapi.entity.Comment;
 import com.filmrestapi.filmapi.entity.Movie;
-import com.filmrestapi.filmapi.MapStructMapper;
+import com.filmrestapi.filmapi.mapped.MapStructMapper;
 import com.filmrestapi.filmapi.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,15 @@ public class CommentController {
     }
 
     @PostMapping("/NewComment")
-    public void newComment(@RequestBody CommentDto commentDto){
-        commentService.saveNewComment(mapStructMapper.commentDtoToComment(commentDto));
+    public String newComment(@Valid @RequestBody CommentDto commentDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "null";
+        }
+        else {
+            commentService.saveNewComment(mapStructMapper.commentDtoToComment(commentDto));
+            return "Save to comment";
+        }
+
+
     }
 }
