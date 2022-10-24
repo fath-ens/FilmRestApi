@@ -19,6 +19,7 @@ public abstract class MapStructMapper {
     @Inject
     MovieService movieService;
 
+    @Mapping(target = "id", ignore = true)
     public abstract Movie movieDtoToMovie(MovieDto movieDto);
 
     public abstract MovieDto movieToMovieDto(Movie movie);
@@ -28,6 +29,7 @@ public abstract class MapStructMapper {
     public abstract CommentDto commentToCommentDto(Comment comment);
 
     @Mapping(target = "fid", ignore = true)
+    @Mapping(target = "id", ignore = true)
     public abstract Comment commentDtoToComment(CommentDto commentDto);
 
     @AfterMapping

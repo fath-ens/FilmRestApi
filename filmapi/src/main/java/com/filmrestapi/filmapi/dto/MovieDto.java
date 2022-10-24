@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
@@ -12,8 +13,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class MovieDto implements Serializable {
 
+    @NotNull(groups = Existing.class)
+    @Null(groups = New.class)
+    private Integer id;
+
     @NotEmpty
-    @Size(max = 500, message = " Film name should have at max 500 characters")
+    @Size(max = 500)
     private String name;
 
     @NotNull
@@ -23,6 +28,12 @@ public class MovieDto implements Serializable {
 
 
     @NotEmpty
-    @Size(max = 500, message = " Director name should have at max 500 characters")
+    @Size(max = 500)
     private String director;
+
+    public MovieDto(String name, int year, String director) {
+        this.name = name;
+        this.year = year;
+        this.director = director;
+    }
 }

@@ -10,10 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Movie {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private int id;
     @Column
     private String name;

@@ -24,4 +24,18 @@ public class CommentService {
     public void saveNewComment(Comment comment){
         commentRepository.save(comment);
     }
+
+    public void editComment(Comment comment, Integer commentID) {
+        commentRepository.findById(commentID).map(
+                oldcomment ->{
+                    oldcomment.setFid(comment.getFid());
+                    oldcomment.setMsg(comment.getMsg());
+                    oldcomment.setUser(comment.getUser());
+                    commentRepository.save(oldcomment);
+                    return "Comment be edit.";
+                }).orElseGet(()->{
+            commentRepository.save(comment);
+            return "New Comment saved";
+        });
+    }
 }

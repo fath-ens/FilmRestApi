@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-19T12:35:24+0300",
+    date = "2022-10-24T13:23:23+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.1 (Oracle Corporation)"
 )
 @Component
@@ -38,6 +38,7 @@ public class MapStructMapperImpl extends MapStructMapper {
 
         MovieDto movieDto = new MovieDto();
 
+        movieDto.setId( movie.getId() );
         movieDto.setName( movie.getName() );
         movieDto.setYear( movie.getYear() );
         movieDto.setDirector( movie.getDirector() );
@@ -53,6 +54,7 @@ public class MapStructMapperImpl extends MapStructMapper {
 
         CommentDto commentDto = new CommentDto();
 
+        commentDto.setId( comment.getId() );
         commentDto.setUser( comment.getUser() );
         commentDto.setMsg( comment.getMsg() );
 
